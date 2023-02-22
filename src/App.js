@@ -1,7 +1,7 @@
 
 import React,{ Component } from "react";
 
-import Header from "./components/header";
+// import Header from "./components/header";
 import Quizz from "./components/quizz"
 
 class App extends Component {
@@ -12,7 +12,7 @@ class App extends Component {
     render(){
         return(
           <div>
-            <Header/>
+            {/* <Header/> */}
             <Quizz/>
           </div>
         )
