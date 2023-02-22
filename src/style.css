@@ -43,7 +43,7 @@
     min-width: 300px;
 
     display:grid;
-    grid-template:35px 35px / 1fr 1fr;
+    grid-template:55px 55px / 1fr 1fr;
     padding:18px;
     grid-gap:18px;
     font-weight: bold;
