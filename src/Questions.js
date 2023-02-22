@@ -26,12 +26,12 @@ const QuestionStack = () => {
     1 : newQuestion("Unter der Woche geht Felix gerne mal in die ...","Untere","Obere","Rechte","Linke"),
     2 : newQuestion("Annalena und Katharina kann man gut unterscheiden","Nein","Es gibt einen einfachen Trick!","nach dem zweiten oder dritten Mal","Ja"),
     3 : newQuestion("Steven steht so richtig auf ...","Fusis","Handys","Schmusis","Bussis"),
-    4 : newQuestion("Danny und Emre waren zusammen","in Chi na","in Frau en","in die n","in Mann heim"),
+    4 : newQuestion("Danny und Emre waren zusammen","in Chi na","in Frau en","in Die n","in Mann heim"),
     5 : newQuestion("Lucas trinkt am liebsten","Jelzin","Gorbatschow","Lenin","Putin"),
 
 
     6: newQuestion("Francis hat an welchem Ort jemanden behindert gewrestelt","in Heidis Garten","in Dirks Keller","auf Lauras Balkon","vor Lucas Wohnung"),
-    7 : newQuestion('Keine der "Lugert`s" ist","Sophia","Katharina","Annalena","Johannah'),
+    7 : newQuestion('Keine der "Lugert`s" ist',"Sophia","Katharina","Annalena","Johannah"),
     8 : newQuestion("Vanessa kommt aus","dem Odenwald","der Pfalz","Hessen","Baden"),
     9 : newQuestion("Felix hat ANGEBLICH!!! an Halloween","Kindern seine Eier gezeigt","Kinder mit Eiern beworfen","Mit einer Pferdemaske Kinder erschreckt","einem Kind die Süßigkeiten geklaut"),
     10 : newQuestion("Steven`s Wohnsitz ist in...","Seckenheim","Ilvesheim","Ladenburg","Feudenheim"),
@@ -50,8 +50,5 @@ const QuestionStack = () => {
 
 export default QuestionStack
 
-
-
-newQuestion("frage","ri","fal","fal","fal"),
 
   
