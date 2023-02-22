@@ -27,9 +27,14 @@ class Answer extends Component {
     }
 
     render(){
-        const {answer} = this.props
+        const {answer,letter} = this.props
         return(
-            <div className={this.getClassName(this.props.pickedAnswer)} onClick={this.checkAnswer}>{answer}</div>
+            <div className={this.getClassName(this.props.pickedAnswer)} onClick={this.checkAnswer}>
+                <div className="symbol">◆</div>
+                <div className="letter">{letter}:</div>
+                <div>{answer}</div>
+                
+            </div>
         )
     }
 }

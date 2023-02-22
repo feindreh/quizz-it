@@ -54,7 +54,7 @@ class Quizz extends Component {
                 <div className="answers">
                     {questions.map((answer)=>{
                         id++
-                        return <Answer key={id} answer={answer} good={this.state.questions[count].rightAnswer} pickedAnswer={pickedAnswer} callback={this.AnswerPicked}/>
+                        return <Answer letter={getLetter(id)}key={id} answer={answer} good={this.state.questions[count].rightAnswer} pickedAnswer={pickedAnswer} callback={this.AnswerPicked}/>
                     })}
                 </div>
                 <NextButton answer={pickedAnswer} right={this.rightAnswer} wrong={this.wrongAnswer}/>
@@ -63,6 +63,22 @@ class Quizz extends Component {
      
         
     }
+}
+
+function getLetter(number){
+    switch(number){
+        case 1:
+            return "A";
+        case 2:
+            return "B";
+        case 3:
+            return "C";
+        case 4:
+            return "D";
+        default:
+            throw "Shit"
+    }
+    
 }
 
 export default Quizz
