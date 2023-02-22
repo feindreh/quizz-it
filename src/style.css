@@ -22,6 +22,7 @@
     min-width: 300px;
 
     padding:200px 20px 0px 20px;
+    position: relative;
     
 }
 
@@ -73,6 +74,31 @@
     border:solid rgb(135, 146, 180) 4px;
 
 }
+.right{
+    border:solid rgb(30, 255, 0) 4px;
+    pointer-events: none;
+}
+
+.wrong{
+    border:solid red 4px;
+    pointer-events: none;
+}
+
+#cash{
+    position: absolute;
+    top:0;
+    justify-content: space-between;
+    display: flex;
+    background-color: rgb(6, 6, 100);
+    width: 95%;
+    pointer-events: none;
+    font-size: 16px;
+}
+
+.cashmoney{
+    color:Orange;
+    font-weight: bold;
+}
 
 .nextButton{
     max-width: 800px;
@@ -85,13 +111,3 @@
     color:rgb(255, 255, 255);
 }
 
-
-.right{
-    border:solid rgb(30, 255, 0) 4px;
-    pointer-events: none;
-}
-
-.wrong{
-    border:solid red 4px;
-    pointer-events: none;
-}

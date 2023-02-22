@@ -2,6 +2,7 @@ import React,{ Component } from "react";
 import QuestionStack from "../Questions";
 import NextButton from "./nextbutton";
 import Answer from "./answers";
+import Cashbar from "./cashbar";
 
 class Quizz extends Component {
     constructor(){
@@ -15,7 +16,6 @@ class Quizz extends Component {
         this.wrongAnswer = this.wrongAnswer.bind(this)
         this.AnswerPicked = this.AnswerPicked.bind(this)
     }
-
     wrongAnswer(){
         this.setState({
             count:0,
@@ -57,6 +57,7 @@ class Quizz extends Component {
                         return <Answer letter={getLetter(id)}key={id} answer={answer} good={this.state.questions[count].rightAnswer} pickedAnswer={pickedAnswer} callback={this.AnswerPicked}/>
                     })}
                 </div>
+                <Cashbar count={count}/>
                 <NextButton answer={pickedAnswer} right={this.rightAnswer} wrong={this.wrongAnswer}/>
               </div>  
             )
