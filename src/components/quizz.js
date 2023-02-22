@@ -8,7 +8,7 @@ class Quizz extends Component {
         super()
         this.state = {
             count : 0,
-            questions : QuestionStack,
+            questions : QuestionStack(),
             pickedAnswer:null,
         }
         this.rightAnswer = this.rightAnswer.bind(this)
@@ -20,6 +20,7 @@ class Quizz extends Component {
         this.setState({
             count:0,
             pickedAnswer:null,
+            questions: QuestionStack(),
         })
     }
     rightAnswer(){
