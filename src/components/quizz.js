@@ -45,6 +45,7 @@ class Quizz extends Component {
 
     render(){
         const {count,pickedAnswer} = this.state
+        if(this.state.questions[count] === undefined){return <>Winner Winner !!</>}
         const questions = this.state.questions[count].Answers
         let id = 0
             return(
