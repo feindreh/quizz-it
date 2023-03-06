@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import { useState } from "react"
 
 function Home(){
     return(
@@ -12,6 +11,9 @@ function Home(){
             </Link>
             <Link to={"/create"}>
                 <button type="button">Quizz erstellen</button>
+            </Link>
+            <Link to={"/edit"}>
+                <button type="button">Quizz bearbeiten</button>
             </Link>
         </div>
     )
