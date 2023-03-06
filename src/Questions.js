@@ -47,11 +47,6 @@ const QuestionStack = () => {
   }
 }
 
-
-export function Cash(){
-    const cash = ["0","50","100","200","300","500","1k","2k","4k","8k","16k","32k","64k","125k","500k","1Mio"]
-    return cash
-}
 export default QuestionStack
 
 
