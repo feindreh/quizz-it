@@ -2,27 +2,29 @@ import NextButton from "./nextbutton";
 import Answer from "./answers";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { getQuizz } from "../firebase/firestore/firestore";
 
 function Quizz(props){
 
     const {id} = useParams()
-    const {quizzes} = props
+    let {quizzes} = props
+
+    let goodQuizz
+
     for(let key in quizzes){
         //get the right quizz
         if(quizzes[key].id === id){
-            var goodQuizz = quizzes[key]
+            goodQuizz = quizzes[key]
         }
     }
-
-
-
-    const name = goodQuizz.name
 
     const [questions,setQuestions] = useState(goodQuizz.quizz)
     const [count,setCount] = useState(0);
     const [pickedAnswer,setPickedAnswer] = useState(null)
     const [Answers,setAnswers] = useState(shuffleQuestion(questions[count]))
 
+
+    const name = goodQuizz.name
 
     function wrongAnswer(){
         setCount(0)
@@ -78,7 +80,7 @@ function getLetter(number){
         case 4:
             return "D";
         default:
-            throw "Shit"
+            console.error("Shit")
     }
     
 }
