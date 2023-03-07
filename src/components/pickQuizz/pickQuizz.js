@@ -5,12 +5,12 @@ import QuizzPick from "./quizzPick"
 
 function PickQuizz(props){
 
-    const {quizzes} = props
+    const {quizzes,feature} = props
 
 
     return(
         <div>
-            {quizzes.map((quizz,id)=><QuizzPick key={id} quizz={quizz}/>)}
+            {quizzes.map((quizz,id)=><QuizzPick key={id} quizz={quizz} feature={feature}/>)}
         </div>
     )
 }
