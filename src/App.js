@@ -22,7 +22,7 @@ function App(){
   return(
     <Routes>
       <Route path="/" element ={<Home/>}/>
-      <Route path="/play/:id" element={<Quizz/>}/>
+      <Route path="/play/:id" element={<Quizz quizzes={quizzes}/>}/>
       <Route path="/pick" element={<PickQuizz quizzes={quizzes}/>}/>
       <Route path="/create" element ={<MakeQuizz/>}/>
       <Route path="/edit" element={<Edit/>}/>
