@@ -2,7 +2,6 @@ import { Link } from "react-router-dom"
 
 function QuizzPick(props){
     const {quizz} = props
-    console.log(quizz)
     return (
         <div className = "quizzPick">
             <div className="pickWrap">
