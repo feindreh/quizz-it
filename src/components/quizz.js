@@ -1,74 +1,71 @@
-import React,{ Component } from "react";
-import QuestionStack from "../Questions";
 import NextButton from "./nextbutton";
 import Answer from "./answers";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-class Quizz extends Component {
-    constructor(){
-        super()
-        this.state = {
-            count : 0,
-            questions : QuestionStack(),
-            pickedAnswer:null,
-            name:QuestionStack().name,
+function Quizz(props){
+
+    const {id} = useParams()
+    const {quizzes} = props
+    for(let key in quizzes){
+        //get the right quizz
+        if(quizzes[key].id === id){
+            var goodQuizz = quizzes[key]
         }
-        this.rightAnswer = this.rightAnswer.bind(this)
-        this.wrongAnswer = this.wrongAnswer.bind(this)
-        this.AnswerPicked = this.AnswerPicked.bind(this)
     }
-    wrongAnswer(){
-        this.setState({
-            count:0,
-            pickedAnswer:null,
-            questions: QuestionStack(),
-        })
+
+
+
+    const name = goodQuizz.name
+
+    const [questions,setQuestions] = useState(goodQuizz.quizz)
+    const [count,setCount] = useState(0);
+    const [pickedAnswer,setPickedAnswer] = useState(null)
+    const [Answers,setAnswers] = useState(shuffleQuestion(questions[count]))
+
+
+    function wrongAnswer(){
+        setCount(0)
+        setPickedAnswer(null)
     }
-    rightAnswer(){
-        this.setState({
-            count: this.state.count + 1,
-            pickedAnswer:null,
-        })
+
+    function rightAnswer(){
+        setCount(count+1)
+        setPickedAnswer(null)
+        setAnswers(shuffleQuestion(questions[count+1]))
     }
-    AnswerPicked(boolean){
+
+    function AnswerPicked(boolean){
         if(boolean === true){
             //right answer picked
-            this.setState({
-                pickedAnswer:true
-            })
+            setPickedAnswer(true)
         }else{
-            //wrong answer picked
-            this.setState({
-                pickedAnswer:false
-            })
+            setPickedAnswer(false)
         }
     }
 
-    render(){
-        const {count,pickedAnswer,name} = this.state
 
-        if(this.state.questions[count] === undefined){return <div id="winner"> </div>}
+    if(questions[count] === undefined){return <div id="winner"> </div>}
 
-        const questions = this.state.questions[count].Answers
-        let id = 0
+    console.log(questions)
+
+    let key= 0
             return(
               <div>
                   <div id="quizzName">{name}</div>
                   <div id="quizz">
-                    <div className="question">{this.state.questions[count].question}</div>
+                    <div className="question">{questions[count].question}</div>
                     <div className="answers">
-                        {questions.map((answer)=>{
-                            id++
-                            return <Answer letter={getLetter(id)}key={id} answer={answer} good={this.state.questions[count].rightAnswer} pickedAnswer={pickedAnswer} callback={this.AnswerPicked}/>
+                        {Answers.map((answer)=>{
+                            key++
+                            return <Answer letter={getLetter(key)}key={key} answer={answer} good={questions[count].rightAnswer} pickedAnswer={pickedAnswer} callback={AnswerPicked}/>
                         })}
                     </div>
-                    <NextButton answer={pickedAnswer} right={this.rightAnswer} wrong={this.wrongAnswer}/>
+                    <NextButton answer={pickedAnswer} right={rightAnswer} wrong={wrongAnswer}/>
                   </div>
               </div>
             )
-     
-        
     }
-}
 
 function getLetter(number){
     switch(number){
@@ -85,5 +82,21 @@ function getLetter(number){
     }
     
 }
+function shuffle(a,b,c,d){
+    const arr = [a,b,c,d]
+    const result = []
+    while(arr.length>0){
+        const number = Math.floor(Math.random()*arr.length);
+        result.push(arr[number])
+        arr.splice(number,1)
+    }
+    return result
+}
+
+function shuffleQuestion(question){
+    if(question === undefined){return}
+    return shuffle(question.rightAnswer,question.answer2,question.answer3,question.answer4)
+}
+
 
 export default Quizz
