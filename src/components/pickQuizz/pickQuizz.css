@@ -1,0 +1,11 @@
+.quizzPick{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.pickWrap{
+    display:flex;
+    justify-content: space-between;
+    gap:20px;
+}
