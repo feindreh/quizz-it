@@ -13,8 +13,7 @@ function MakeQuizz(){
 
         for(let key in newQuizz){
             newObj[key] = newQuizz[key]
-            newObj.name = name
-        }
+        }  
         saveQuizz(newObj,name);
         setNewQuizz([]);
         setName("")
