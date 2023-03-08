@@ -9,12 +9,13 @@ const db = getFirestore(app);
 
 export default async function saveQuizz(quizz,name,id = uniqid()){
   try{
+
     console.log("save")
-    await setDoc(doc(collection(db,"quizz"),id),{
+    await setDoc(doc(db,"quizz",id),{
       quizz:quizz,
        name:name,
-       id:uniqid()
-    })
+       id:id
+      })
   } catch(e){
     console.error("Error saving Quizz:",e)
   }
