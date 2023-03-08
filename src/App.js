@@ -6,7 +6,6 @@ import Home from "./components/home";
 import Quizz from "./components/quizz";
 import MakeQuizz from "./components/makeQuizz/makeQuizz";
 import PickQuizz from "./components/pickQuizz/pickQuizz";
-import EditQuizz from "./components/editQuizz/editQuizz";
 
 import { getQuizz } from "./firebase/firestore/firestore";
 import { useState,useEffect } from "react";
@@ -26,7 +25,7 @@ function App(){
       <Route path="/create" element ={<MakeQuizz/>}/>
       <Route path="/pick" element={<PickQuizz quizzes={quizzes} feature={"play"}/>}/>
       <Route path="/edit" element={<PickQuizz quizzes={quizzes} feature={"edit"}/>}></Route>
-      <Route path="/edit/:id" element={<EditQuizz quizzes={quizzes}/>}/>
+      <Route path="/edit/:id" element={<MakeQuizz quizzes={quizzes}/>}/>
     </Routes>
   )
 }
