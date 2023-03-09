@@ -78,14 +78,16 @@ function MakeQuizz(){
         setNewQuizz(test)
     }
 
-
     return(
         <div id="quizzMaker">
             <div>makeQuizz</div>
             <button type="button" onClick={saveIT}>Speichern</button>
             <label>Name des Quizzes</label><input type = "text" defaultValue={name} onChange={(e)=>{setName(e.target.value)}}></input>
             
-            {newQuizz.map((question,a)=><NewQuestion key={a} number={a} Question={question} del={deleteQuestion}/>)}
+            {newQuizz.map((question,number)=>{
+                return (
+                <NewQuestion key={`${question.question}+${number}`}number={number} Question={question} del={deleteQuestion}/>
+                )})}
 
             <button onClick={()=>{setNewQuizz([...newQuizz,{}])}}>Neue Frage</button>
 
