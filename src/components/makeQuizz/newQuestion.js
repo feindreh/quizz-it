@@ -1,13 +1,17 @@
 
 function NewQuestion(props){
 
-    const{number,Question,del} = props
+    const{number,Question,del,move} = props
 
 
     return(
         <div className="newQuestion">
             <button type="button" onClick={()=>{del(number)}}>Frage Löschen</button>
-            <div>Frage Nummer: {number+1}</div>
+            <div>
+                <div>Frage Nummer: {number+1}</div>
+                <button type ="button" onClick={()=>{move(number,"up")}}>Up</button>
+                <button type ="button" onClick={()=>{move(number,"down")}}>Down</button>
+                </div>
             <div className="wrap">
                 <label>Frage</label>
                 <input type="text" defaultValue={Question.question} onChange={(e)=>{Question.question = e.target.value}}></input>
