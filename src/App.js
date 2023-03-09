@@ -3,7 +3,7 @@ import React,{ Component } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
 import Home from "./components/home";
-import Quizz from "./components/quizz";
+import Quizz from "./components/play/quizz";
 import MakeQuizz from "./components/makeQuizz/makeQuizz";
 import PickQuizz from "./components/pickQuizz/pickQuizz";
 
