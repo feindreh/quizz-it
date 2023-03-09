@@ -19,10 +19,11 @@ function MakeQuizz(){
     },[])
 
     async function load(){
-        let resol
-        await getQuizz().then((resolve)=>{resol=resolve})
-        setNewQuizz(getNewQuizz(resol));
-        setName(getNewName(resol))
+        await getQuizz().then((resolve)=>{
+            setNewQuizz(getNewQuizz(resolve));
+            setName(getNewName(resolve))
+        })
+        
     }
 
     function getNewQuizz(arr){
@@ -66,8 +67,8 @@ function MakeQuizz(){
             newObj[key] = newQuizz[key]
         }  
         saveQuizz(newObj,name,id);
-        setNewQuizz([]);
-        setName("")
+        // setNewQuizz([]);
+        // setName("")
     }
 
     function deleteQuestion(position){
