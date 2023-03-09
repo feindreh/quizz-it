@@ -55,11 +55,6 @@ function MakeQuizz(){
             }
         }
     }
-
-    
-
-    
-
     async function saveIT(){
         const newObj = {}
 
@@ -70,13 +65,36 @@ function MakeQuizz(){
         // setNewQuizz([]);
         // setName("")
     }
-
     function deleteQuestion(position){
         const test = newQuizz.filter((filler,i) => { 
             return position !== i 
         })
         setNewQuizz(test)
     }
+    
+    function move(position,direction){
+        let movement
+        if(direction === "up"){
+            movement = -1
+        }else if(direction === "down"){
+            movement = 1
+        }else{console.error("wrong direction")}
+        
+        console.log(direction)
+        console.log(newQuizz)
+        const newArr = [...newQuizz]
+
+        //check if movement is possilbe
+        if(newArr[position+movement]===undefined){console.log("not a valid move");return}
+        //make the move
+        const tobemoved = newArr[position]
+        newArr[position] = newArr[position+movement]
+        newArr[position+movement] = tobemoved
+        setNewQuizz(newArr)
+    }
+    
+
+
 
     return(
         <div id="quizzMaker">
@@ -86,7 +104,7 @@ function MakeQuizz(){
             
             {newQuizz.map((question,number)=>{
                 return (
-                <NewQuestion key={`${question.question}+${number}`}number={number} Question={question} del={deleteQuestion}/>
+                <NewQuestion key={`${question.question}+${number}`}number={number} move={move} Question={question} del={deleteQuestion}/>
                 )})}
 
             <button onClick={()=>{setNewQuizz([...newQuizz,{}])}}>Neue Frage</button>
