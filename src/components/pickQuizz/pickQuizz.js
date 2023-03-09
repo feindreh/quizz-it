@@ -5,7 +5,13 @@ import QuizzPick from "./quizzPick"
 
 function PickQuizz(props){
 
-    const {quizzes,feature} = props
+    const {feature} = props
+
+    const [quizzes,setQuizzes] = useState([])
+
+    useEffect(()=>{
+        getQuizz().then((resolve)=>setQuizzes(resolve))
+    },[])
 
 
     return(
