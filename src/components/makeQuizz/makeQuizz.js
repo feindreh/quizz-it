@@ -1,24 +1,40 @@
-import {useState} from "react"
+import {useState,useEffect} from "react"
 import { useParams } from "react-router-dom"
 import saveQuizz from "../../firebase/firestore/firestore"
 import "./makeQuizz.css"
 import NewQuestion from "./newQuestion"
+import { getQuizz } from "../../firebase/firestore/firestore"
 
-function MakeQuizz(props){
+function MakeQuizz(){
+
+
 
     const {id} = useParams() 
-    const {quizzes} = props
+    const [newQuizz,setNewQuizz] = useState([])
+    const [name,setName] = useState("")
 
-    function getNewQuizz(){
+
+    useEffect(()=>{
+       load()
+    },[])
+
+    async function load(){
+        let resol
+        await getQuizz().then((resolve)=>{resol=resolve})
+        setNewQuizz(getNewQuizz(resol));
+        setName(getNewName(resol))
+    }
+
+    function getNewQuizz(arr){
         //if no params return empty array else return quizz to edit
         if(id===undefined){
             return []
         }else{
-            for(let key in quizzes){
-                if(quizzes[key].id === id){
+            for(let key in arr){
+                if(arr[key].id === id){
                     const newArray = []
-                    for(let subkey in quizzes[key].quizz){
-                        newArray.push(quizzes[key].quizz[subkey])
+                    for(let subkey in arr[key].quizz){
+                        newArray.push(arr[key].quizz[subkey])
                     }
                     return newArray
                 }
@@ -26,21 +42,20 @@ function MakeQuizz(props){
         }
     }
 
-    function getNewName(){
+    function getNewName(arr){
          //if no params return empty string else return name to edit
         if(id===undefined){
             return ""
         }else{
-            for(let key in quizzes){
-                if(quizzes[key].id === id){
-                    return quizzes[key].name
+            for(let key in arr){
+                if(arr[key].id === id){
+                    return arr[key].name
                 }
             }
         }
     }
 
-    const [newQuizz,setNewQuizz] = useState(getNewQuizz())
-    const [name,setName] = useState(getNewName())
+    
 
     
 
@@ -53,10 +68,15 @@ function MakeQuizz(props){
         saveQuizz(newObj,name,id);
         setNewQuizz([]);
         setName("")
-
     }
 
-    console.log(newQuizz)
+    function deleteQuestion(position){
+        const test = newQuizz.filter((filler,i) => { 
+            return position !== i 
+        })
+        setNewQuizz(test)
+    }
+
 
     return(
         <div id="quizzMaker">
@@ -64,7 +84,7 @@ function MakeQuizz(props){
             <button type="button" onClick={saveIT}>Speichern</button>
             <label>Name des Quizzes</label><input type = "text" defaultValue={name} onChange={(e)=>{setName(e.target.value)}}></input>
             
-            {newQuizz.map((question,a)=><NewQuestion key={a} number={a} Question={question}/>)}
+            {newQuizz.map((question,a)=><NewQuestion key={a} number={a} Question={question} del={deleteQuestion}/>)}
 
             <button onClick={()=>{setNewQuizz([...newQuizz,{}])}}>Neue Frage</button>
 
