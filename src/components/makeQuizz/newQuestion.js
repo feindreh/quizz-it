@@ -1,11 +1,12 @@
 
 function NewQuestion(props){
 
-    const{number,Question} = props
+    const{number,Question,del} = props
 
 
     return(
         <div className="newQuestion">
+            <button type="button" onClick={()=>{del(number)}}>Frage Löschen</button>
             <div>Frage Nummer: {number+1}</div>
             <div className="wrap">
                 <label>Frage</label>
