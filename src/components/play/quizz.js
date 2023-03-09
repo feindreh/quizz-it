@@ -2,7 +2,7 @@ import NextButton from "./nextbutton";
 import Answer from "./answers";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getQuizz } from "../firebase/firestore/firestore";
+import { getQuizz } from "../../firebase/firestore/firestore";
 
 function Quizz(props){
 
