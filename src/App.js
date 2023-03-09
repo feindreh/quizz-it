@@ -25,7 +25,7 @@ function App(){
       <Route path="/create" element ={<MakeQuizz/>}/>
       <Route path="/pick" element={<PickQuizz quizzes={quizzes} feature={"play"}/>}/>
       <Route path="/edit" element={<PickQuizz quizzes={quizzes} feature={"edit"}/>}></Route>
-      <Route path="/edit/:id" element={<MakeQuizz quizzes={quizzes}/>}/>
+      <Route path="/edit/:id" element={<MakeQuizz/>}/>
     </Routes>
   )
 }
