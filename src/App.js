@@ -30,10 +30,10 @@ const [quizzes,setQuizzes] = useState([])
       <Routes>
         <Route path="/quizz-it/" element ={<Home/>}/>
         <Route path="/quizz-it/play/:id" element={<Quizz quizzes={quizzes}/>}/>
-        <Route path="/quizz-it/create" element ={<MakeQuizz quizzes={quizzes}/>}/>
-        <Route path="/quizz-it/pick" element={<PickQuizz quizzes={quizzes} feature={"play"}/>}/>
-         <Route path="/quizz-it/edit" element={<PickQuizz quizzes={quizzes} feature={"edit"}/>}></Route>
-        <Route path="/quizz-it/edit/:oldId" element={<MakeQuizz quizzes={quizzes}/>}/>
+        <Route path="/quizz-it/create" element ={<MakeQuizz quizzes={quizzes} load={load} />}/>
+        <Route path="/quizz-it/pick" element={<PickQuizz quizzes={quizzes}  feature={"play"}/>}/>
+         <Route path="/quizz-it/edit" element={<PickQuizz quizzes={quizzes}  feature={"edit"}/>}></Route>
+        <Route path="/quizz-it/edit/:oldId" element={<MakeQuizz quizzes={quizzes} load={load}/>}/>
       </Routes>
     </div>
   )
