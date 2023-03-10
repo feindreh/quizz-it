@@ -6,6 +6,7 @@ import Home from "./components/home/home";
 import Quizz from "./components/play/quizz";
 import MakeQuizz from "./components/makeQuizz/makeQuizz";
 import PickQuizz from "./components/pickQuizz/pickQuizz";
+import Share from "./components/share";
 
 import { useEffect } from "react";
 
@@ -40,6 +41,8 @@ const [quizzes,setQuizzes] = useState([])
         <Route path="/pick" element={<PickQuizz quizzes={quizzes}  feature={"play"}/>}/>
         <Route path="/edit" element={<PickQuizz quizzes={quizzes}  feature={"edit"}/>}></Route>
         <Route path="/edit/:oldId" element={<MakeQuizz quizzes={quizzes} load={load}/>}/>
+        <Route path="/share/" element={<PickQuizz quizzes={quizzes} feature={"share"}/>}></Route>
+        <Route path="/share/:id" element={<Share/>}></Route>
       </Routes>
     </div>
   )
