@@ -1,5 +1,4 @@
 import {getFirestore,collection, addDoc,getDocs,doc ,setDoc} from "firebase/firestore";
-import uniqid from "uniqid"
 
 
 
@@ -7,9 +6,8 @@ import app from "../app";
 
 const db = getFirestore(app);
 
-export default async function saveQuizz(quizz,name,id = uniqid()){
+export default async function saveQuizz(quizz,name,id){
   try{
-
     console.log("save")
     await setDoc(doc(db,"quizz",id),{
       quizz:quizz,
