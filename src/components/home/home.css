@@ -1,0 +1,17 @@
+#home{
+    text-align: center;
+}
+
+#homewrap{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+#homewrap button{
+    width:200px;
+    padding:20px;
+    border-radius: 15px;
+    font-size:18px;
+    font-weight: bold;
+}
