@@ -16,6 +16,12 @@ function MakeQuizz(props){
     useEffect(()=>{
        if(oldId===undefined){setId(uniqid())} 
     },[])
+
+    useEffect(()=>{
+        setNewQuizz(getNewQuizz(quizzes));
+        setName(getNewName(quizzes))
+    },[quizzes])
+
     const [id,setId] = useState(oldId)
     const [newQuizz,setNewQuizz] = useState(getNewQuizz(quizzes))
     const [name,setName] = useState(getNewName(quizzes))

@@ -1,6 +1,6 @@
 import NextButton from "./nextbutton";
 import Answer from "./answers";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 
@@ -10,7 +10,14 @@ function Quizz(props){
     let {id} = useParams()
     const {quizzes }= props
 
-    
+    useEffect(()=>{
+        if(quizzes.length === 0){return }
+        setCount(0);
+        setPickedAnswer(null)
+        setAnswers(getAnswers(quizzes))
+        setName(getNameById(quizzes,id))
+        setQuestions(getQuizzById(quizzes,id).quizz)
+    },[quizzes])
 
     function getQuizzById(Quizz,id){
         //get the right quizz
@@ -22,22 +29,6 @@ function Quizz(props){
         }
         return goodQuizz
     }
-    // function getNewQuizz(arr){
-    //     //if no params return empty array else return quizz to edit
-    //     if(id===undefined){
-    //         return []
-    //     }else{
-    //         for(let key in arr){
-    //             if(arr[key].id === id){
-    //                 const newArray = []
-    //                 for(let subkey in arr[key].quizz){
-    //                     newArray.push(arr[key].quizz[subkey])
-    //                 }
-    //                 return newArray
-    //             }
-    //         }
-    //     }
-    // }
     function getNameById(arr,id){
         //if no params return empty string else return name to edit
         if(id===undefined){
@@ -50,13 +41,24 @@ function Quizz(props){
             }
         }
     }
+    function getAnswers(Quizz){
+    if(Quizz.length === 0){
+        return []
+    }else{
+        return  shuffleQuestion(getQuizzById(Quizz,id).quizz[count])
+    }
+      
+    }
+    function getQuestions(Quizz,id){
+        if(Quizz.length === 0){return []}
+        return getQuizzById(quizzes,id).quizz
+    }
 
-    
     const [count,setCount] = useState(0);
     const [pickedAnswer,setPickedAnswer] = useState(null)
-    const [Answers,setAnswers] = useState(shuffleQuestion(getQuizzById(quizzes,id).quizz[count]))
-    const name = getNameById(quizzes,id)
-    const questions = getQuizzById(quizzes,id).quizz
+    const [Answers,setAnswers] = useState(getAnswers(quizzes))
+    const [name,setName] = useState(getNameById(quizzes,id))
+    const [questions,setQuestions] = useState(getQuestions(quizzes,id))
 
     function wrongAnswer(){
         setCount(0)
