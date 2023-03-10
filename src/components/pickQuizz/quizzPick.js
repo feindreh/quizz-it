@@ -19,6 +19,8 @@ function getText(feat){
             return "Dieses Quizz Spielen";
         case "edit":
             return "Dieses Quizz bearbeiten"
+        case "share":
+            return "Dieses Quizz teilen"
         default:
             console.error("undefined feature")
 
