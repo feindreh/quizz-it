@@ -6,12 +6,10 @@ function QuizzPick(props){
     const text = getText(feature)
 
     return (
-        <div className = "quizzPick">
             <div className="pickWrap">
                 <div className = "quizzPick-name">{quizz.name}</div>
                 <Link to={`/quizz-it/${feature}/${quizz.id}`}><button type="button">{text}</button></Link>
             </div>
-        </div>
     )
 }
 
