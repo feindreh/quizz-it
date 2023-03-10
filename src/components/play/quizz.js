@@ -84,7 +84,7 @@ function Quizz(props){
     if(questions[count] === undefined){return <div id="winner"> </div>}
     let key= 0
     return(
-        <div>
+        <div id="TheQuizz">
             <div id="quizzName">{name}</div>
             <div id="quizz">
             <div className="question">{questions[count].question}</div>
