@@ -7,71 +7,60 @@ import { getQuizz } from "../../firebase/firestore/firestore";
 function Quizz(props){
 
     const {id} = useParams()
-
-    useEffect(()=>{
-        load()
-     },[])
- 
-     async function load(){
-         await getQuizz().then((resolve)=>{
-             setQuizzes(getNewQuizz(resolve));
-             setName(getNewName(resolve))
-            let goodQuizz
-            for(let key in resolve){
-                //get the right quizz
-                if(resolve[key].id === id){
-                    goodQuizz = resolve[key]
-                }
-            }
-            setQuestions(goodQuizz.quizz)
-            setAnswers(shuffleQuestion(goodQuizz.quizz[count]))
-
-         })
-         
-     }
- 
-     function getNewQuizz(arr){
-         //if no params return empty array else return quizz to edit
-         if(id===undefined){
-             return []
-         }else{
-             for(let key in arr){
-                 if(arr[key].id === id){
-                     const newArray = []
-                     for(let subkey in arr[key].quizz){
-                         newArray.push(arr[key].quizz[subkey])
-                     }
-                     return newArray
-                 }
-             }
-         }
-     }
- 
-     function getNewName(arr){
-          //if no params return empty string else return name to edit
-         if(id===undefined){
-             return ""
-         }else{
-             for(let key in arr){
-                 if(arr[key].id === id){
-                     return arr[key].name
-                 }
-             }
-         }
-     }
-    // let {quizzes} = props
+    const {quizzes }= props
 
     
-    const [quizzes,setQuizzes] = useState([])
-    const [questions,setQuestions] = useState([])
+
+    function getQuizzById(Quizz,id){
+        //get the right quizz
+        let goodQuizz
+        for(let key in Quizz){
+            if(Quizz[key].id === id){
+                goodQuizz = Quizz[key]
+        }
+        }
+        return goodQuizz
+    }
+    function getNewQuizz(arr){
+        //if no params return empty array else return quizz to edit
+        if(id===undefined){
+            return []
+        }else{
+            for(let key in arr){
+                if(arr[key].id === id){
+                    const newArray = []
+                    for(let subkey in arr[key].quizz){
+                        newArray.push(arr[key].quizz[subkey])
+                    }
+                    return newArray
+                }
+            }
+        }
+    }
+    function getNewName(arr){
+        //if no params return empty string else return name to edit
+        if(id===undefined){
+            return ""
+        }else{
+            for(let key in arr){
+                if(arr[key].id === id){
+                    return arr[key].name
+                }
+            }
+        }
+    }
+
+    
     const [count,setCount] = useState(0);
     const [pickedAnswer,setPickedAnswer] = useState(null)
-    const [Answers,setAnswers] = useState([])
-    const [name,setName] = useState("")
+    const [Answers,setAnswers] = useState(shuffleQuestion(getQuizzById(quizzes,id).quizz[count]))
+    const name = getNewName(quizzes)
+    const questions = getQuizzById(quizzes,id).quizz
 
     function wrongAnswer(){
         setCount(0)
         setPickedAnswer(null)
+        setAnswers(shuffleQuestion(questions[0]))
     }
 
     function rightAnswer(){
@@ -90,9 +79,6 @@ function Quizz(props){
     }
 
 
-    
-    console.log(questions)
-    console.log(Answers)
     if(questions.length===0){return <></>}
     if(questions[count] === undefined){return <div id="winner"> </div>}
     let key= 0
