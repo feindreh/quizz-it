@@ -26,7 +26,7 @@ const [quizzes,setQuizzes] = useState([])
   
 }
   return(
-    <div>
+    <div id="App">
       <Routes>
         <Route path="/quizz-it/" element ={<Home/>}/>
         <Route path="/quizz-it/play/:id" element={<Quizz quizzes={quizzes}/>}/>
