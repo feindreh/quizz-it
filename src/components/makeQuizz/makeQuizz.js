@@ -1,27 +1,28 @@
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import { useParams } from "react-router-dom"
 
 import saveQuizz from "../../firebase/firestore/firestore"
 
 import "./makeQuizz.css"
 import NewQuestion from "./newQuestion"
-
+import uniqid from "uniqid"
 
 function MakeQuizz(props){
 
 
     const {quizzes} = props
-    const {id} = useParams() 
+    const {oldId} = useParams() 
     
+    useEffect(()=>{
+       if(oldId===undefined){setId(uniqid())} 
+    },[])
+    const [id,setId] = useState(oldId)
     const [newQuizz,setNewQuizz] = useState(getNewQuizz(quizzes))
     const [name,setName] = useState(getNewName(quizzes))
 
     
     function getNewQuizz(arr){
-        //if no params return empty array else return quizz to edit
-        if(id===undefined){
-            return []
-        }else{
+        //if unused id return empty array else return quizz to edit
             for(let key in arr){
                 if(arr[key].id === id){
                     const newArray = []
@@ -31,22 +32,17 @@ function MakeQuizz(props){
                     return newArray
                 }
             }
-        }
+            return []
     }
     function getNewName(arr){
-         //if no params return empty string else return name to edit
-        if(id===undefined){
-            return ""
-        }else{
+         //if unused id return empty string else return name to edit
             for(let key in arr){
                 if(arr[key].id === id){
                     return arr[key].name
                 }
             }
-        }
+            return ""
     }
-
-
     async function saveIT(){
         const newObj = {}
 
@@ -63,7 +59,6 @@ function MakeQuizz(props){
         })
         setNewQuizz(test)
     }
-    
     function move(position,direction){
         let movement
         if(direction === "up"){
@@ -84,10 +79,8 @@ function MakeQuizz(props){
         newArr[position+movement] = tobemoved
         setNewQuizz(newArr)
     }
-    
 
-
-
+    console.log(id)
     return(
         <div id="quizzMaker">
             <div>makeQuizz</div>
