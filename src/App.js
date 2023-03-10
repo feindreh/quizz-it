@@ -10,14 +10,16 @@ import PickQuizz from "./components/pickQuizz/pickQuizz";
 function App(){
 
   return(
-    <Routes>
-      <Route path="/" element ={<Home/>}/>
-      <Route path="/play/:id" element={<Quizz/>}/>
-      <Route path="/create" element ={<MakeQuizz/>}/>
-      <Route path="/pick" element={<PickQuizz feature={"play"}/>}/>
-      <Route path="/edit" element={<PickQuizz feature={"edit"}/>}></Route>
-      <Route path="/edit/:id" element={<MakeQuizz/>}/>
-    </Routes>
+    <div>
+      <Routes>
+        <Route path="/quizz-it/" element ={<Home/>}/>
+        <Route path="/quizz-it/play/:id" element={<Quizz/>}/>
+        <Route path="/quizz-it/create" element ={<MakeQuizz/>}/>
+        <Route path="/quizz-it/pick" element={<PickQuizz feature={"play"}/>}/>
+        <Route path="/quizz-it/edit" element={<PickQuizz feature={"edit"}/>}></Route>
+        <Route path="/quizz-it/edit/:id" element={<MakeQuizz/>}/>
+      </Routes>
+    </div>
   )
 }
 
