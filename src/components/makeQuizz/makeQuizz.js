@@ -10,7 +10,7 @@ import uniqid from "uniqid"
 function MakeQuizz(props){
 
 
-    const {quizzes} = props
+    const {quizzes,load} = props
     const {oldId} = useParams() 
     
     useEffect(()=>{
@@ -50,8 +50,7 @@ function MakeQuizz(props){
             newObj[key] = newQuizz[key]
         }  
         saveQuizz(newObj,name,id);
-        // setNewQuizz([]);
-        // setName("")
+        load();
     }
     function deleteQuestion(position){
         const test = newQuizz.filter((filler,i) => { 
