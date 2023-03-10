@@ -1,31 +1,22 @@
-import {useState,useEffect} from "react"
+import {useState} from "react"
 import { useParams } from "react-router-dom"
+
 import saveQuizz from "../../firebase/firestore/firestore"
+
 import "./makeQuizz.css"
 import NewQuestion from "./newQuestion"
-import { getQuizz } from "../../firebase/firestore/firestore"
-
-function MakeQuizz(){
 
 
+function MakeQuizz(props){
 
+
+    const {quizzes} = props
     const {id} = useParams() 
-    const [newQuizz,setNewQuizz] = useState([])
-    const [name,setName] = useState("")
+    
+    const [newQuizz,setNewQuizz] = useState(getNewQuizz(quizzes))
+    const [name,setName] = useState(getNewName(quizzes))
 
-
-    useEffect(()=>{
-       load()
-    },[])
-
-    async function load(){
-        await getQuizz().then((resolve)=>{
-            setNewQuizz(getNewQuizz(resolve));
-            setName(getNewName(resolve))
-        })
-        
-    }
-
+    
     function getNewQuizz(arr){
         //if no params return empty array else return quizz to edit
         if(id===undefined){
@@ -42,7 +33,6 @@ function MakeQuizz(){
             }
         }
     }
-
     function getNewName(arr){
          //if no params return empty string else return name to edit
         if(id===undefined){
@@ -55,6 +45,8 @@ function MakeQuizz(){
             }
         }
     }
+
+
     async function saveIT(){
         const newObj = {}
 

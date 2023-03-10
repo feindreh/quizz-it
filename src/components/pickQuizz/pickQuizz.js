@@ -1,18 +1,9 @@
 import "./pickQuizz.css"
-import { getQuizz } from "../../firebase/firestore/firestore"
-import { useEffect, useState } from "react"
 import QuizzPick from "./quizzPick"
 
 function PickQuizz(props){
 
-    const {feature} = props
-
-    const [quizzes,setQuizzes] = useState([])
-
-    useEffect(()=>{
-        getQuizz().then((resolve)=>setQuizzes(resolve))
-    },[])
-
+    const {feature,quizzes} = props
 
     return(
         <div>
