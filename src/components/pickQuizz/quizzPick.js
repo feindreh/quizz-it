@@ -10,7 +10,6 @@ function QuizzPick(props){
             <div className="pickWrap">
                 <div className = "quizzPick-name">{quizz.name}</div>
                 <Link to={`/quizz-it/${feature}/${quizz.id}`}><button type="button">{text}</button></Link>
-                {<div>{`https://feindreh.github.io/quizz-it/play/${quizz.id}`}</div>}
             </div>
         </div>
     )
