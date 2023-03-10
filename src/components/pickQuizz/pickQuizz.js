@@ -6,7 +6,7 @@ function PickQuizz(props){
     const {feature,quizzes} = props
 
     return(
-        <div>
+        <div id="PickQuizz">
             {quizzes.map((quizz,id)=><QuizzPick key={id} quizz={quizz} feature={feature}/>)}
         </div>
     )
