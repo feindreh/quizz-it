@@ -14,6 +14,9 @@ function Home(){
                 <Link to={"/edit"}>
                     <button type="button">Quizz bearbeiten</button>
                 </Link>
+                <Link to={"/share"}>
+                    <button type="button">Quizz Teilen</button>
+                </Link>
             </div>
         </div>
     )
