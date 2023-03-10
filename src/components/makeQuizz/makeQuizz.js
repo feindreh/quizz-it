@@ -80,7 +80,6 @@ function MakeQuizz(props){
         setNewQuizz(newArr)
     }
 
-    console.log(id)
     return(
         <div id="quizzMaker">
             <div>makeQuizz</div>
