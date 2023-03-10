@@ -5,13 +5,13 @@ function Home(){
     return(
         <div id="home">
             <div id="homewrap">
-                <Link to={"/quizz-it/pick"}>
+                <Link to={"/pick"}>
                     <button type="button">Quizz Spielen</button>
                 </Link>
-                <Link to={"/quizz-it/create"}>
+                <Link to={"/create"}>
                     <button type="button">Quizz erstellen</button>
                 </Link>
-                <Link to={"/quizz-it/edit"}>
+                <Link to={"/edit"}>
                     <button type="button">Quizz bearbeiten</button>
                 </Link>
             </div>
